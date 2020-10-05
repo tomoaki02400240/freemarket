@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Freemarket</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag 'https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css' %>
+  </head>
+
+  <body>
+    <header class="global-header">
+      <!-- ロゴ -->
+      <div class="icon">
+        <a href="#">
+          <h1>CodeCamp Market</h1>
+        </a>
+      </div>
+      <!-- 検索　-->
+      <div class="search">
+        <form method="post" action="">
+          <input type="text" name="word" value="" placeholder="検索ワード">
+          <button><i class="fa fa-search" aria-hidden="true"></i></button>
+        </form>
+      </div>
+      <!-- menu -->
+      <ul class="menu">
+        <li>
+          <a href="#">
+            出品する
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <i class="fa fa-user-circle-o" aria-hidden="true"></i>
+          </a>
+        </li>
+      </ul>
+    </header>
+    <%= yield %>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  </body>
+</html>
