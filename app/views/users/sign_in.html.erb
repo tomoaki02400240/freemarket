@@ -1,0 +1,20 @@
+<% provide(:title, 'ログイン') %>
+<div class="sign_in container">
+  <div class="new">
+    <%= form_for :session, url: users_sign_in_process_path, method: :post do |f| %>
+      <div class="field">
+        <%= f.label :email, 'メールアドレス' %>
+        <%= f.email_field :email, placeholder: 'メールアドレス' %>
+      </div>
+      <div class="field">
+        <%= f.label :pasword, 'パスワード' %>
+        <%= f.password_field :password, placeholder: 'パスワード' %>
+      </div>
+      <%= f.submit 'サインインする', class: 'btn' %>
+    <% end %>
+    <p><%= link_to sign_up_path do %>新規登録はこちら<% end %></p>
+  </div>
+  <div class="detail_search">
+    <%= render partial: 'layouts/detail_search' %>
+  </div>
+</div>

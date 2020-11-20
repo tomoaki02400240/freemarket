@@ -1,0 +1,35 @@
+<% provide(:title, '商品一覧') %>
+<div class="container top">
+  <div class="product_all">
+    <ul>
+      <% @products.each do |product| %>
+      <li>
+        <%= link_to markets_show_path(product) do %>
+        <div class="image">
+          <%= image_tag image_url1(product) %>
+          <%= image_tag image_url2(product), style: 'display: none' %>
+          <%= image_tag image_url3(product), style: 'display: none' %>
+        </div>
+        <% end %>
+        <% if product.status === 0 %>
+          <p id="sold_out">Sold　Out</p>
+        <% end %>
+          <h4><%= link_to markets_show_path(product) do %><%= product.name %><% end %></h4>
+          <p>¥<%= product.price %></p>
+        <%= link_to users_likes_path(product) do %>
+        <% if current_user.present? %>
+         <i class="fa <%= current_user.like_from?(product)? "fa-star active" : "fa fa-star-o" %>"></i>
+        <% end %>
+        <% end %>
+      </li>
+      <% end %>
+    </ul>
+    <% if @products.blank? %>
+      <p>対象商品はありません</p>
+    <% end %>
+  </div>
+  <div class="detail_search_index">
+    <%= render partial: 'layouts/detail_search' %>
+  </div>
+</div>
+

@@ -1,0 +1,33 @@
+<% provide(:title, '編集ページ') %>
+<div class="top edit container">
+  <div class="image">
+    <div class="icon_image" style="background: url('<%= image_url(@user) %>'); background-position: 50%; background-size: cover;"></div>
+    <div class="edit_form">
+      <%= form_for @user, url: update_path(@user), method: :post do |f| %>
+      <%= f.label :image, '画像' %>
+      <%= f.file_field :image %>
+      <div class="field">
+        <%= f.label :name, '名前' %>
+        <%= f.text_field :name, placeholder: '名前' %>
+      </div>
+      <div class="field">
+        <%= f.label :profile, 'プロフィール' %>
+        <%= f.text_area :profile, row: 5 %>
+      </div>
+      <div class="field">
+        <%= f.label :password, 'パスワード' %>
+        <%= f.password_field :password, placeholder: 'パスワードを変更しない場合は入力しないでください' %>
+      </div>
+      <div class="field">
+        <%= f.label :password_confirmation, 'パスワード（確認用）' %>
+        <%= f.password_field :password_confirmation, placeholder: '確認用' %>
+      </div>
+      <%= f.submit '送信する', class: 'btn' %>
+      <% end %>
+    </div>
+  </div>
+  
+  <div class="mypage">
+    <%= render partial: 'users/mypage' %>
+  </div>
+</div>

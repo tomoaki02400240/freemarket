@@ -1,0 +1,36 @@
+<div class="top container">
+  <div class="product_card">
+    <ul>
+      <% @userlikes.each do |userlike| %>
+    <li>
+      <%= link_to markets_show_path(userlike.product) do %>
+      <div class="card_image">
+        <%= image_tag image_url1(userlike.product) %>
+        <%= image_tag image_url2(userlike.product), style: 'display: none' %>
+        <%= image_tag image_url3(userlike.product), style: 'display: none' %>
+      </div>
+      <% end %>
+      <div class="name">
+        <% if userlike.user_id === userlike.product.user_id %>
+        <%= link_to users_edit_products_path(userlike.product) do %>
+          <%= userlike.product.name %>
+        <% end %>
+        <% else %>
+          <%= userlike.product.name %>
+        <% end %>
+        
+      </div>
+      <div class="price">
+        <%= userlike.product.price %>
+      </div>
+      <%= link_to users_likes_path(userlike.product), id: 'like_button' do %>
+      <i class="<%= current_user.like_from?(userlike.product)? "fa fa-star active" : "fa fa-star-o" %>"></i>
+      <% end %>
+      </li>
+    <% end %>
+    </ul>
+  </div>
+  <div class="mypage">
+    <%= render partial: 'users/mypage' %>
+  </div>
+</div>

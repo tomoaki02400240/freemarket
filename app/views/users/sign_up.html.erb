@@ -1,0 +1,29 @@
+<% provide(:title, '新規登録') %>
+<div class="sign_up container">
+  <div class="new">
+    <%= form_for @user, url: users_sign_up_process_path do |f| %>
+      <div class="field">
+        <%= f.label :name, 'ニックネーム' %>
+        <%= f.text_field :name, placeholder: 'ニックネーム' %>
+      </div>
+      <div class="field">
+        <%= f.label :email, 'メールアドレス' %>
+        <%= f.email_field :email, placeholder: 'xxxxx@xxxx.xx' %>
+      </div>
+      <div class="field">
+        <%= f.label :password, 'パスワード' %>
+        <%= f.password_field :password, placeholder: '８文字以上の英数字' %>
+      </div>
+      <div class="field">
+        <%= f.label :password_confirmation, 'パスワード（確認用）' %>
+        <%= f.password_field :password_confirmation, placeholder: '確認用' %>
+      </div>
+      <%= f.submit '登録する', class: 'btn' %> 
+    <% end %>
+    
+  </div>
+  
+  <div class="detail_search">
+    <%= render partial: 'layouts/detail_search' %>
+  </div>
+</div>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Freemarket</title>
+    <title><%= full_title(yield(:title)) %></title>
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -13,32 +13,75 @@
     <header class="global-header">
       <!-- ロゴ -->
       <div class="icon">
-        <a href="#">
+        <%= link_to markets_index_path do %>
           <h1>CodeCamp Market</h1>
-        </a>
+        <% end %>
       </div>
       <!-- 検索　-->
-      <div class="search">
-        <form method="post" action="">
+      
+        <form class="serach">
           <input type="text" name="word" value="" placeholder="検索ワード">
           <button><i class="fa fa-search" aria-hidden="true"></i></button>
         </form>
-      </div>
+      
       <!-- menu -->
       <ul class="menu">
         <li>
-          <a href="#">
+          <%= link_to users_new_products_path do %>
             出品する
-          </a>
+          <% end %>
         </li>
         <li>
-          <a href="#">
+          <%= link_to profiles_path do %>
             <i class="fa fa-user-circle-o" aria-hidden="true"></i>
-          </a>
+          <% end %>
         </li>
       </ul>
     </header>
+    <% flash.each do |type, message| %>
+      <div class="alert alert-<%= type %>"><%= message %></div>
+    <% end %>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <%= yield %>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script>
+    window.setTimeout(() => {
+      $('.alert').slideUp()
+    }, 3000)
+    
+    
+    
+      $(function(){
+        $('#post_img1').on('change', function(e){
+          var reader = new FileReader();
+          reader.onload = function(e) {
+            
+            $('#preview1').attr('src', e.target.result)
+
+          }
+          reader.readAsDataURL(e.target.files[0]);
+        });
+      });
+      
+      $(function() {
+        $('#post_img2').on('change', function(e) {
+          var reader = new FileReader();
+          reader.onload = function(e) {
+            $('#preview2').attr('src', e.target.result)
+          }
+          reader.readAsDataURL(e.target.files[0]);
+        })
+      })
+      
+      $(function() {
+        $('#post_img3').on('change', function(e) {
+          var reader = new FileReader();
+          reader.onload = function(e) {
+            $('#preview3').attr('src', e.target.result)
+          }
+          reader.readAsDataURL(e.target.files[0]);
+        })
+      })
+
+  </script>
   </body>
 </html>

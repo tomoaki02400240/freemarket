@@ -35,21 +35,28 @@ body {
     }
   }
   
-  .search {
+  form.search {
     width: 350px;
-      form {
-        width: 330px;
-        input[type="text"] {
-          width: 300px;
-          height: 28px;
-          border-radius: 10px;
-          border: 1px solid #eee;
-          margin-right: -40px;
-          padding: 3px 10px 3px 10px;
-           }
+    width: 330px;
+    height: 28px;
+      input[type="text"] {
+        width: 300px;
+        height: 28px;
+        border-radius: 10px;
+        border: 1px solid #eee;
+        margin-right: -50px;
+        padding: 3px 10px 3px 10px;
         }
+        
      button {
-       font-size: 20px;
+       potision: absolute;
+       top: 10px;
+       right: 50px;
+       font-size: 30px;
+       padding-top: 10px;
+       vertial-align: center;
+       margin-top: 20px;
+       height: 100%;
        border: none;
        background-color: white;
        color: #eee;
@@ -89,4 +96,37 @@ body {
 .container {
   width: 960px;
   margin: 0 auto;
+}
+
+// アラート
+.alert {
+  position: fixed;
+  background-color: #fff;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: 40px;
+  text-align: center;
+  z-index: 1000;
+  line-height: 40px;
+  &-success, &-notice {
+    color: #3c763d;
+    background-color: #dff0d8;
+    border-color: #d6e9c6;
+  }
+  &-info {
+    color: #31708f;
+    background-color: #d9edf7;
+    border-color: #bce8f1;
+  }
+  &-warning {
+    color: #8a6d3b;
+    background-color: #fcf8e3;
+    border-color: #faebcc;
+  }
+  &-danger{
+    color: #a94442;
+    background-color: #f2dede;
+    border-color: #ebccd1;
+  }
 }

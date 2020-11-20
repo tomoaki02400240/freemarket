@@ -1,0 +1,41 @@
+<% provide(:title, '商品投稿') %>
+<div class="top new container">
+  <div class="image">
+    <div class="product_new_form">
+      <%= form_for @product, url: users_products_create_path, method: :post do |f| %>
+        <div class="field">
+          <%= f.label :name, '商品名' %>
+          <%= f.text_field :name, placeholder: 'コードキャンプのTシャツ' %>
+        </div>
+        <div class="field">
+          <%= f.label :description, '説明' %>
+          <%= f.text_area :description, placeholder: 'コードキャンプで制作されたオリジナルTシャツです。' %>
+        </div>
+        <div class="field">
+          <%= f.label :category_id, 'カテゴリー' %>
+          <%= f.collection_select :category_id, @categories, :id, :name,{ include_blank: true } %>
+        </div>
+        <div class="field">
+          <%= f.label :price, '価格' %>
+          <%= f.number_field :price, value: 0 %>
+        </div>
+        <div class="field">
+          <p>画像１</p>
+          <%= f.file_field :image1 %>
+        </div>
+        <div class="field">
+          <p>画像２</p>
+          <%= f.file_field :image2 %>
+        </div>
+        <div class="field">
+          <p>画像３</p>
+          <%= f.file_field :image3 %>
+        </div>
+        <%= f.submit '送信する', class: 'btn' %>
+      <% end %>
+    </div>
+  </div>
+  <div class="mypage">
+    <%= render partial: 'users/mypage' %> 
+  </div>
+</div>

@@ -1,0 +1,44 @@
+<div class="conteiner top products">
+  <div class="image">
+    <% if @products.any? %>
+    <ul id="product_index">
+      <% @products.each do |product| %>
+      <li>
+        <div>
+          <%= link_to users_product_path(product) do %>
+            <%= image_tag image_url1(product),class: 'product_image',number: 0%>
+            <%= image_tag image_url2(product),class: 'product_image',style: 'display:none',number: 1 %>
+            <%= image_tag image_url3(product),class: 'product_image',style: 'display:none',number: 2 %>
+          <% end %>
+        </div>
+        <h3 class="user_product_name"><%= link_to users_product_path(product) do %><%= product.name %><% end %></h3>
+        <p class="user_product_price"><%= product.price %>円</p>
+      </li>
+      <% end %>
+    </ul>
+    <% else %>
+    <p class="empty">商品がありません</p>
+    <% end %>
+  </div>
+  <div class="mypage">
+    <%= render partial: 'users/mypage' %>
+  </div>
+</div>
+
+<script>
+  $(function(){
+    $('.product_image').on('click',function(){
+      var number = Number($(this).attr('number'));
+      console.log(number);
+      console.log(this)
+      $(this).hide();
+      if(number<2){
+        number++;
+      }else{
+        number=0;
+      }
+      console.log(this)
+      $(this).parent().children('img').eq(number).show();
+    })
+  })
+</script>

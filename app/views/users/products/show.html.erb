@@ -1,0 +1,51 @@
+<div class="container top">
+  <div class="page_product">
+    <h3>販売中</h3>
+  
+    
+      <div class="product_name">
+        <h2><%= @product.name %></h2>
+      </div>
+      
+        <div class="product_images">
+          
+          <%= image_tag image_url1(@product), class: 'product_image', number: 0 %>
+          <%= image_tag image_url2(@product), class: 'product_image', style: 'display: none', number: 1 %>
+          <%= image_tag image_url3(@product), class: 'product_image', style: 'display: none', number: 2 %>
+         
+          
+        </div>
+      <div class="product_category">
+        <p>カテゴリー:<%= @product.category.name %></p>
+      </div>
+    
+    <div class="product_price">
+      <h2>¥<%= @product.price %></h2>
+    </div>
+    <%= link_to users_edit_products_path(@product), class: 'product_edit' do %><p>編集</p><% end %>
+    <div class="product_description">
+      <p><%= @product.description %></p>
+    </div>
+    <%= link_to '削除する', users_path, method: :delete, data: { confirm: '本当に削除しますか？' } %>
+  </div>
+  <div class="mypage">
+    <%= render partial: 'users/mypage' %>
+  </div>
+  <script>
+    $(function(){
+    $('.product_image').on('click',function(){
+      var number = Number($(this).attr('number'));
+      console.log(number);
+      console.log(this)
+      $(this).hide();
+      if(number<2){
+        number++;
+      }else{
+        number=0;
+      }
+      console.log(this)
+      $(this).parent().children('img').eq(number).show();
+    })
+  })
+  </script>
+</div>

@@ -1,0 +1,34 @@
+
+<div class="container top">
+  <div class="product_details">
+    <h3 class="product_name">
+      <%= @product.name %>
+    </h3>
+    <div class="product_image">
+      <%= image_tag image_url1(@product) %>
+      <%= image_tag image_url2(@product), style: 'display: none' %>
+      <%= image_tag image_url3(@product), style: 'display: none' %>
+    </div>
+    <p>
+      カテゴリー：<%= @product.category.name %>
+    </p>
+    <h2>¥<%= @product.price %></h2>
+    <% if @product.status === 0 %>
+    <p class="sold_out_button">売り切れ中</p>
+    <% else %>
+      <% if controller.action_name == 'show' %>
+        <%= link_to '購入する',payment_path(@product),class: 'btn' %>
+      <% elsif controller.action_name == 'payment' %>
+        <%= link_to payment_path(@product),method: 'POST',class: 'btn' do %>
+          <%= button_change(yield(:button)) %>
+        <% end %>
+      <% end %>
+    <% end %>
+    <p>
+    <%= @product.description %>
+    </p>
+  </div>
+  <dic class="detail_search_index">
+    <%= render partial: 'layouts/detail_search' %>
+  </dic>
+</div>

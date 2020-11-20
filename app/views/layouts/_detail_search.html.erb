@@ -1,0 +1,30 @@
+<%= debug params %>
+<h3>詳細検索</h3>
+    <%= form_with scope: :search, url: markets_index_path, method: :get, local: true do |f| %>
+      <div class="field">
+        <label for="keyword">キーワード追加</label>
+        <input type="text" name="keyword" placeholder="例）値下げ">
+      </div>
+      
+      <div class="field">
+        <%= f.label :name, 'カテゴリー選択' %>
+        <%= f.collection_select :category_id, Category.all, :id, :name, {include_blank: true} %>
+      </div>
+      
+      <div class="field">
+        <!--<label for="price_search">価格</label>-->
+        <input type="text" name="min_price">~
+        <input type='text' name='max_price'>
+      </div>
+      <div class="field">
+        <label for="line">並び替え</label>
+        <select name="line">
+            <option value='id desc'>新着順</option>
+            <option value='id asc'>古いもの順</option>
+            <option value='price desc'>価格順（降順）</option>
+            <option value='price asc'>価格順（昇順）</option>
+        </select>
+      </div>
+      <button>検索</button>
+    <% end %>
+  

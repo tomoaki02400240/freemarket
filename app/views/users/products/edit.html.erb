@@ -1,0 +1,41 @@
+<div class="container top">
+  <div class="product_edit_form">
+    <%= form_for @product, url: users_update_products_path(@product), method: :post do |f| %>
+      <div class="field">
+        <%= f.label :name, '商品名' %>
+        <%= f.text_field :name%>
+      </div>
+      <div class="filed">
+        <%= f.label :description, '説明' %>
+        <%= f.text_area :description %>
+      </div>
+      <div class="field">
+        <%= f.label :category_id, 'カテゴリー' %>
+        <%= f.collection_select :category_id, Category.all, :id, :name, {include_blank: true} %>
+      </div>
+      <div class="field">
+        <%= f.label :price, '価格' %>
+        <%= f.number_field :price %>
+      </div>
+      <div class="img_field">
+        <p>画像１</p>
+        <%= f.file_field :image1, id: 'post_img1' %>
+        <img id=preview1>
+      </div>
+      <div class="img_field">
+        <p>画像２</p>
+        <%= f.file_field :image2, id: 'post_img2' %>
+        <img id="preview2">
+      </div>
+      <div class="img_field">
+        <p>画像３</p>
+        <%= f.file_field :image3, id: 'post_img3' %>
+        <img id="img_preview3">
+      </div>
+      <%= f.submit '送信する', class: 'btn' %>
+    <% end %>
+  </div>
+  <div class="mypage">
+    <%= render partial: 'users/mypage' %>
+  </div>
+</div>

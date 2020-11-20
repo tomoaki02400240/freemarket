@@ -1,0 +1,8 @@
+<h3>マイページ</h3>
+    <ul>
+      <li><%= link_to users_new_products_path do %>出品する<% end %></li>
+      <li><%= link_to users_products_path do %>出品中の商品<% end %></li>
+      <li><%= link_to moment_path do %>お気に入りの商品<% end %></a></li>
+      <li><%= link_to profiles_edit_path(current_user) do %>プロフィール更新<% end %></li>
+      <li><%= link_to sign_out_path(current_user) do %>サインアウト<% end %></li>
+    </ul>
